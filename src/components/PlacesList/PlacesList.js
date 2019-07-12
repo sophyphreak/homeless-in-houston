@@ -9,9 +9,11 @@ const PlacesList = ({ places, currentPosition }) => {
     place.transitTime = places[name].transitTime;
     return place;
   });
-  placesList.sort(
-    (a, b) => a.walkingTime.milliseconds - b.walkingTime.milliseconds
-  );
+  if (placesList.length) {
+    placesList.sort(
+      (a, b) => a.walkingTime.milliseconds - b.walkingTime.milliseconds
+    );
+  }
   return (
     <div>
       {placesList.map((place, index) => {
