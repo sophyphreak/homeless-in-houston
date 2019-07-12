@@ -36,7 +36,8 @@ const Place = ({
         <h4>{name.slice(0, name.length - 7)}</h4>
         <hr />
         <CardText>
-          Walking Time: {walkingTime.text}
+          {walkingTime.text} walking
+          <br />
           <Button color="link">
             <a
               href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${name.replace(
@@ -44,11 +45,11 @@ const Place = ({
                 '+'
               )}&travelmode=walking`}
             >
-              Get walking directions
+              walking directions
             </a>
           </Button>
           <br />
-          Bus/Rail Time: {transitTime.text}
+          {transitTime.text} taking bus/rail
           <Button color="link">
             <a
               href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${name.replace(
@@ -56,7 +57,7 @@ const Place = ({
                 '+'
               )}&travelmode=transit`}
             >
-              Get bus/rail directions
+              bus/rail directions
             </a>
           </Button>
         </CardText>
