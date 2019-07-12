@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import loadGoogleMapsApi from 'load-google-maps-api';
+import parseDuration from 'parse-duration';
 import getCurrentPosition from './getCurrentPosition';
 import shelterList from './shelterList';
 
@@ -35,8 +36,9 @@ class App extends Component {
           const places = this.state.places || {};
           destinations.forEach((place, index) => {
             if (!places[place]) places[place] = {};
-            places[place].walkingTime =
-              response.rows[0].elements[index].duration.text;
+            places[place].walkingTime = parseDuration(
+              response.rows[0].elements[index].duration.text
+            );
           });
           this.setState(() => ({ places }));
         }
@@ -51,8 +53,9 @@ class App extends Component {
           const places = this.state.places || {};
           destinations.forEach((place, index) => {
             if (!places[place]) places[place] = {};
-            places[place].transitTime =
-              response.rows[0].elements[index].duration.text;
+            places[place].transitTime = parseDuration(
+              response.rows[0].elements[index].duration.text
+            );
           });
           this.setState(() => ({ places }));
         }
