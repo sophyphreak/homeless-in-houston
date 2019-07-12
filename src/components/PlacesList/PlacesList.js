@@ -36,7 +36,7 @@ const Place = ({
         <h4>{name.slice(0, name.length - 7)}</h4>
         <hr />
         <CardText>
-          {walkingTime.text} walking
+          <strong>{walkingTime.text}</strong> walking
           <br />
           <Button color="link">
             <a
@@ -49,7 +49,7 @@ const Place = ({
             </a>
           </Button>
           <br />
-          {transitTime.text} taking bus/rail
+          <strong>{transitTime.text}</strong> taking bus/rail
           <br />
           <Button color="link">
             <a
