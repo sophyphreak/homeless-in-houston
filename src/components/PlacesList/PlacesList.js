@@ -50,6 +50,7 @@ const Place = ({
           </Button>
           <br />
           {transitTime.text} taking bus/rail
+          <br />
           <Button color="link">
             <a
               href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${name.replace(
