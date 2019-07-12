@@ -33,7 +33,7 @@ const Place = ({
   <>
     <Card>
       <CardBody>
-        <h4>{name}</h4>
+        <h4>{name.slice(0, name.length - 7)}</h4>
         <hr />
         <CardText>
           Walking Time: {walkingTime.text}
