@@ -1,14 +1,15 @@
-const getCurrentPosition = () => {
-  const success = pos => {
-    const latitude = pos.coords.latitude;
-    const longitude = pos.coords.longitude;
-    const currentPosition = { longitude, latitude };
-    this.setState({ currentPosition });
-  };
-  const error = err => {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  };
-  navigator.geolocation.getCurrentPosition(success, error);
+import PromisedLocation from 'promised-location';
+
+const getCurrentPosition = async () => {
+  try {
+    const locator = new PromisedLocation();
+    const position = await locator;
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    return { latitude, longitude };
+  } catch (err) {
+    console.error('Position Error ', err.toString());
+  }
 };
 
 export default getCurrentPosition;
