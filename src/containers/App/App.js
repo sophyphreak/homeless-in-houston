@@ -3,6 +3,7 @@ import loadGoogleMapsApi from 'load-google-maps-api';
 import parseDuration from 'parse-duration';
 import getCurrentPosition from './getCurrentPosition';
 import shelterList from './shelterList';
+import PlacesList from '../../components/PlacesList/PlacesList';
 
 class App extends Component {
   constructor(props) {
@@ -36,9 +37,11 @@ class App extends Component {
           const places = this.state.places || {};
           destinations.forEach((place, index) => {
             if (!places[place]) places[place] = {};
-            places[place].walkingTime = parseDuration(
-              response.rows[0].elements[index].duration.text
-            );
+            const walkingTime = response.rows[0].elements[index].duration.text;
+            places[place].walkingTime = {
+              text: walkingTime,
+              milliseconds: parseDuration(walkingTime)
+            };
           });
           this.setState(() => ({ places }));
         }
@@ -53,9 +56,11 @@ class App extends Component {
           const places = this.state.places || {};
           destinations.forEach((place, index) => {
             if (!places[place]) places[place] = {};
-            places[place].transitTime = parseDuration(
-              response.rows[0].elements[index].duration.text
-            );
+            const transitTime = response.rows[0].elements[index].duration.text;
+            places[place].transitTime = {
+              text: transitTime,
+              milliseconds: parseDuration(transitTime)
+            };
           });
           this.setState(() => ({ places }));
         }
@@ -65,7 +70,12 @@ class App extends Component {
     }
   }
   render() {
-    return <p>i'm in App</p>;
+    return (
+      <PlacesList
+        places={this.state.places}
+        currentPosition={this.state.currentPosition}
+      />
+    );
   }
 }
 
