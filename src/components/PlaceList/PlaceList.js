@@ -1,22 +1,15 @@
 import React from 'react';
 import { Card, CardBody, CardText, Button } from 'reactstrap';
 
-const PlacesList = ({ places, currentPosition }) => {
-  const placeNames = Object.keys(places);
-  const placesList = placeNames.map(name => {
-    const place = { name };
-    place.walkingTime = places[name].walkingTime;
-    place.transitTime = places[name].transitTime;
-    return place;
-  });
-  if (placesList.length) {
-    placesList.sort(
+const PlaceList = ({ placeList, currentPosition }) => {
+  if (placeList.length) {
+    placeList.sort(
       (a, b) => a.walkingTime.milliseconds - b.walkingTime.milliseconds
     );
   }
   return (
     <div>
-      {placesList.map((place, index) => {
+      {placeList.map((place, index) => {
         return <Place {...place} {...currentPosition} key={index} />;
       })}
     </div>
@@ -33,7 +26,7 @@ const Place = ({
   <>
     <Card>
       <CardBody>
-        <h4>{name.slice(0, name.length - 7)}</h4>
+        <h4>{name}</h4>
         <hr />
         <CardText style={{ fontSize: '1.4em' }}>
           <strong>{walkingTime.text}</strong> walking
@@ -70,4 +63,4 @@ const Place = ({
 
 // const generateHref =
 
-export default PlacesList;
+export default PlaceList;

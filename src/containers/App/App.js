@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import loadGoogleMapsApi from 'load-google-maps-api';
-import parseDuration from 'parse-duration';
 import getCurrentPosition from './getCurrentPosition';
 import shelterList from './shelterList';
-import PlacesList from '../../components/PlacesList/PlacesList';
+import getInitialPlaceList from './getInitialPlaceList';
+import getTravelDuration from './getTravelDuration';
+import PlaceList from '../../components/PlaceList/PlaceList';
 
 class App extends Component {
   constructor(props) {
@@ -13,11 +14,12 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      places: {}
+      placeList: getInitialPlaceList(shelterList)
     };
   }
   async componentDidMount() {
     try {
+      let placeList = this.state.placeList;
       const currentPosition = await getCurrentPosition();
       this.setState(() => ({ currentPosition }));
       const googleMaps = await loadGoogleMapsApi({
@@ -25,54 +27,31 @@ class App extends Component {
       });
       const { latitude, longitude } = this.state.currentPosition;
       const origins = [new googleMaps.LatLng(latitude, longitude)];
-      const destinations = shelterList.map(place => place + ' Houston');
+      const destinations = placeList.map(({ name }) => name + ' Houston');
       const service = new googleMaps.DistanceMatrixService();
-      await service.getDistanceMatrix(
-        {
-          origins,
-          destinations,
-          travelMode: 'WALKING'
-        },
-        response => {
-          const places = this.state.places || {};
-          destinations.forEach((place, index) => {
-            if (!places[place]) places[place] = {};
-            const walkingTime = response.rows[0].elements[index].duration.text;
-            places[place].walkingTime = {
-              text: walkingTime,
-              milliseconds: parseDuration(walkingTime)
-            };
-          });
-          this.setState(() => ({ places }));
-        }
-      );
-      await service.getDistanceMatrix(
-        {
-          origins,
-          destinations,
-          travelMode: 'TRANSIT'
-        },
-        response => {
-          const places = this.state.places || {};
-          destinations.forEach((place, index) => {
-            if (!places[place]) places[place] = {};
-            const transitTime = response.rows[0].elements[index].duration.text;
-            places[place].transitTime = {
-              text: transitTime,
-              milliseconds: parseDuration(transitTime)
-            };
-          });
-          this.setState(() => ({ places }));
-        }
-      );
+      placeList = await getTravelDuration({
+        placeList,
+        service,
+        origins,
+        destinations,
+        travelMode: 'WALKING'
+      });
+      placeList = await getTravelDuration({
+        placeList,
+        service,
+        origins,
+        destinations,
+        travelMode: 'TRANSIT'
+      });
+      this.setState(() => ({ placeList }));
     } catch (e) {
       console.log('ERROR:', e);
     }
   }
   render() {
     return (
-      <PlacesList
-        places={this.state.places}
+      <PlaceList
+        placeList={this.state.placeList}
         currentPosition={this.state.currentPosition}
       />
     );
