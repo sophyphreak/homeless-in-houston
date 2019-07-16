@@ -35,10 +35,10 @@ const Place = ({
       <CardBody>
         <h4>{name.slice(0, name.length - 7)}</h4>
         <hr />
-        <CardText>
+        <CardText style={{ fontSize: '1.4em' }}>
           <strong>{walkingTime.text}</strong> walking
           <br />
-          <Button color="link">
+          <Button color="link" style={{ fontSize: '0.9em' }}>
             <a
               href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${name.replace(
                 / /g,
@@ -51,7 +51,7 @@ const Place = ({
           <br />
           <strong>{transitTime.text}</strong> taking bus/rail
           <br />
-          <Button color="link">
+          <Button color="link" style={{ fontSize: '0.9em' }}>
             <a
               href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${name.replace(
                 / /g,
