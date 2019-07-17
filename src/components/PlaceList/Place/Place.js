@@ -1,8 +1,9 @@
 import React from 'react';
-import { Card, CardBody, CardText, Button } from 'reactstrap';
+import { Card, CardBody, CardText } from 'reactstrap';
+import DirectionsButton from './DirectionsButton/DirectionsButton';
 
 const Place = ({
-  walkingTime = {},
+  walkingTime,
   transitTime = {},
   latitude,
   longitude,
@@ -16,29 +17,21 @@ const Place = ({
         <CardText style={{ fontSize: '1.4em' }}>
           <strong>{walkingTime.text}</strong> walking
           <br />
-          <Button color="link" style={{ fontSize: '0.9em' }}>
-            <a
-              href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${name.replace(
-                / /g,
-                '+'
-              )}&travelmode=walking`}
-            >
-              walking directions
-            </a>
-          </Button>
+          <DirectionsButton
+            travelMode="walking"
+            latitude={latitude}
+            longitude={longitude}
+            name={name}
+          />
           <br />
           <strong>{transitTime.text}</strong> taking bus/rail
           <br />
-          <Button color="link" style={{ fontSize: '0.9em' }}>
-            <a
-              href={`https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${name.replace(
-                / /g,
-                '+'
-              )}&travelmode=transit`}
-            >
-              bus/rail directions
-            </a>
-          </Button>
+          <DirectionsButton
+            travelMode="transit"
+            latitude={latitude}
+            longitude={longitude}
+            name={name}
+          />
         </CardText>
       </CardBody>
     </Card>
