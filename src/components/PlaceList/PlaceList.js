@@ -1,5 +1,5 @@
 import React from 'react';
-import Place from '../Place/Place';
+import Place from './Place/Place';
 
 const PlaceList = ({ placeList, currentPosition }) => {
   if (googleMapsCallCompleted(placeList)) {
