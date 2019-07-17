@@ -13,10 +13,12 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      places: {}
+      places: {},
+      share: false
     };
   }
-  async componentDidMount() {
+
+  handleClick = async () => {
     try {
       const currentPosition = await getCurrentPosition();
       this.setState(() => ({ currentPosition }));
@@ -68,13 +70,22 @@ class App extends Component {
     } catch (e) {
       console.log('ERROR:', e);
     }
-  }
+  };
+
   render() {
     return (
-      <PlacesList
-        places={this.state.places}
-        currentPosition={this.state.currentPosition}
-      />
+      <>
+        <p>
+          This application shows you the homeless shelters that are close to
+          you. In order to do that, we need to know your location. Please click
+          on the share location button to share your location.
+        </p>
+        <button onClick={this.handleClick}>Share location</button>
+        <PlacesList
+          places={this.state.places}
+          currentPosition={this.state.currentPosition}
+        />
+      </>
     );
   }
 }
