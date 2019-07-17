@@ -30,13 +30,14 @@ class App extends Component {
       const origins = [new googleMaps.LatLng(latitude, longitude)];
       const destinations = placeList.map(({ name }) => name + ' Houston');
       const service = new googleMaps.DistanceMatrixService();
+      const setState = this.setState;
       getTravelDuration({
         placeList,
         service,
         origins,
         destinations,
         travelMode: 'WALKING',
-        setState: this.setState
+        setState
       });
       getTravelDuration({
         placeList,
@@ -44,7 +45,7 @@ class App extends Component {
         origins,
         destinations,
         travelMode: 'TRANSIT',
-        setState: this.setState
+        setState
       });
     } catch (e) {
       console.log('ERROR:', e);
