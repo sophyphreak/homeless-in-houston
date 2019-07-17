@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import loadGoogleMapsApi from 'load-google-maps-api';
-import getCurrentPosition from './getCurrentPosition';
 import shelterList from './shelterList';
 import getInitialPlaceList from './getInitialPlaceList';
-import getTravelDuration from './getTravelDuration';
+import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import PlaceList from '../../components/PlaceList/PlaceList';
 
 class App extends Component {
@@ -19,41 +17,14 @@ class App extends Component {
     this.setState = this.setState.bind(this);
   }
   async componentDidMount() {
-    try {
-      let placeList = this.state.placeList;
-      const currentPosition = await getCurrentPosition();
-      this.setState(() => ({ currentPosition }));
-      const googleMaps = await loadGoogleMapsApi({
-        key: process.env.GOOGLE_MAPS_KEY
-      });
-      const { latitude, longitude } = this.state.currentPosition;
-      const origins = configureCurrentLocation({
-        googleMaps,
-        latitude,
-        longitude
-      });
-      const destinations = eachNameWithHoustonAtEnd(placeList);
-      const service = new googleMaps.DistanceMatrixService();
-      const setState = this.setState;
-      getTravelDuration({
-        placeList,
-        service,
-        origins,
-        destinations,
-        travelMode: 'WALKING',
-        setState
-      });
-      getTravelDuration({
-        placeList,
-        service,
-        origins,
-        destinations,
-        travelMode: 'TRANSIT',
-        setState
-      });
-    } catch (e) {
-      console.log('ERROR:', e);
-    }
+    const currentPosition = this.state.currentPosition;
+    const placeList = this.state.placeList;
+    const setState = this.setState;
+    getPositionAndDurations({
+      currentPosition,
+      placeList,
+      setState
+    });
   }
   render() {
     return (
@@ -64,11 +35,5 @@ class App extends Component {
     );
   }
 }
-
-const configureCurrentLocation = ({ googleMaps, latitude, longitude }) => [
-  new googleMaps.LatLng(latitude, longitude)
-];
-const eachNameWithHoustonAtEnd = placeList =>
-  placeList.map(({ name }) => name + ' Houston');
 
 export default App;
