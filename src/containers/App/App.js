@@ -27,8 +27,12 @@ class App extends Component {
         key: process.env.GOOGLE_MAPS_KEY
       });
       const { latitude, longitude } = this.state.currentPosition;
-      const origins = [new googleMaps.LatLng(latitude, longitude)];
-      const destinations = placeList.map(({ name }) => name + ' Houston');
+      const origins = configureCurrentLocation({
+        googleMaps,
+        latitude,
+        longitude
+      });
+      const destinations = eachNameWithHoustonAtEnd(placeList);
       const service = new googleMaps.DistanceMatrixService();
       const setState = this.setState;
       getTravelDuration({
@@ -60,5 +64,11 @@ class App extends Component {
     );
   }
 }
+
+const configureCurrentLocation = ({ googleMaps, latitude, longitude }) => [
+  new googleMaps.LatLng(latitude, longitude)
+];
+const eachNameWithHoustonAtEnd = placeList =>
+  placeList.map(({ name }) => name + ' Houston');
 
 export default App;
