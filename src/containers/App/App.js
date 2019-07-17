@@ -4,6 +4,7 @@ import parseDuration from 'parse-duration';
 import getCurrentPosition from './getCurrentPosition';
 import shelterList from './shelterList';
 import PlacesList from '../../components/PlacesList/PlacesList';
+import { Spinner } from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -14,12 +15,23 @@ class App extends Component {
         longitude: 0
       },
       places: {},
-      share: false
+      loading: false
     };
+  }
+
+  componentDidMount() {
+    let result = localStorage.getItem('share');
+    if (result) {
+      this.handleClick();
+    } else {
+      return;
+    }
   }
 
   handleClick = async () => {
     try {
+      localStorage.setItem('share', true);
+      this.setState({ loading: true });
       const currentPosition = await getCurrentPosition();
       this.setState(() => ({ currentPosition }));
       const googleMaps = await loadGoogleMapsApi({
@@ -64,7 +76,7 @@ class App extends Component {
               milliseconds: parseDuration(transitTime)
             };
           });
-          this.setState(() => ({ places }));
+          this.setState(() => ({ places, loading: false }));
         }
       );
     } catch (e) {
@@ -75,12 +87,20 @@ class App extends Component {
   render() {
     return (
       <>
-        <p>
-          This application shows you the homeless shelters that are close to
-          you. In order to do that, we need to know your location. Please click
-          on the share location button to share your location.
-        </p>
-        <button onClick={this.handleClick}>Share location</button>
+        {!localStorage.getItem('share') && (
+          <>
+            <p>
+              This application shows you homeless shelters that are close to
+              you. In order to do that, please click on the button below to
+              share your location.
+            </p>
+            <button onClick={this.handleClick}>Share location</button>{' '}
+          </>
+        )}
+
+        {this.state.loading && (
+          <Spinner style={{ marginLeft: '4px' }} color="purple" />
+        )}
         <PlacesList
           places={this.state.places}
           currentPosition={this.state.currentPosition}
