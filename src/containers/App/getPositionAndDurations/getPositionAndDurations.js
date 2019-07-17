@@ -14,11 +14,7 @@ const getPositionAndDurations = async ({
       key: process.env.GOOGLE_MAPS_KEY
     });
     const { latitude, longitude } = currentPosition;
-    const origins = configureCurrentLocation({
-      googleMaps,
-      latitude,
-      longitude
-    });
+    const origins = [new googleMaps.LatLng(latitude, longitude)];
     const destinations = eachNameWithHoustonAtEnd(placeList);
     const service = new googleMaps.DistanceMatrixService();
     getTravelDuration({
@@ -42,9 +38,6 @@ const getPositionAndDurations = async ({
   }
 };
 
-const configureCurrentLocation = ({ googleMaps, latitude, longitude }) => [
-  new googleMaps.LatLng(latitude, longitude)
-];
 const eachNameWithHoustonAtEnd = placeList =>
   placeList.map(({ name }) => name + ' Houston');
 
