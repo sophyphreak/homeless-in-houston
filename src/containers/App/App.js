@@ -16,6 +16,7 @@ class App extends Component {
       },
       placeList: getInitialPlaceList(shelterList)
     };
+    this.setState = this.setState.bind(this);
   }
   async componentDidMount() {
     try {
@@ -29,21 +30,22 @@ class App extends Component {
       const origins = [new googleMaps.LatLng(latitude, longitude)];
       const destinations = placeList.map(({ name }) => name + ' Houston');
       const service = new googleMaps.DistanceMatrixService();
-      placeList = await getTravelDuration({
+      getTravelDuration({
         placeList,
         service,
         origins,
         destinations,
-        travelMode: 'WALKING'
+        travelMode: 'WALKING',
+        setState: this.setState
       });
-      placeList = await getTravelDuration({
+      getTravelDuration({
         placeList,
         service,
         origins,
         destinations,
-        travelMode: 'TRANSIT'
+        travelMode: 'TRANSIT',
+        setState: this.setState
       });
-      this.setState(() => ({ placeList }));
     } catch (e) {
       console.log('ERROR:', e);
     }
