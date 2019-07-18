@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import shelterList from './shelterList';
-import { Spinner } from 'reactstrap';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  Col,
+  Spinner
+} from 'reactstrap';
 import getInitialPlaceList from './getInitialPlaceList';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import PlaceList from '../../components/PlaceList/PlaceList';
@@ -54,18 +62,28 @@ class App extends Component {
     return (
       <>
         {!this.state.share && (
-          <>
-            <p>
-              This application shows you homeless shelters that are close to
-              you. In order to do that, please click on the button below to
-              share your location.
-            </p>
-            <button onClick={this.handleClick}>Share location</button>{' '}
-          </>
+          <Col xs="12" sm={{ size: 8, offset: 2 }}>
+            <Card>
+              <CardBody>
+                <CardTitle>
+                  <b>Hey there!</b>
+                </CardTitle>
+                <hr />
+                <CardText>
+                  After you share your location, we will show you the services
+                  closest to you.
+                </CardText>
+                <br />
+                <Button color="primary" onClick={this.handleClick}>
+                  Share location
+                </Button>
+              </CardBody>
+            </Card>
+          </Col>
         )}
 
-        {this.state.loading && (
-          <Spinner style={{ marginLeft: '4px' }} color="purple" />
+        {!this.state.placeList[0].hasOwnProperty('walkingTime') && (
+          <Spinner style={{ marginLeft: '10em' }} color="purple" />
         )}
         <PlaceList
           placeList={this.state.placeList}
