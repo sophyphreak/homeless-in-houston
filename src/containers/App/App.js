@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import shelterList from './shelterList';
-import PlacesList from '../../components/PlacesList/PlacesList';
 import { Spinner } from 'reactstrap';
 import getInitialPlaceList from './getInitialPlaceList';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
@@ -14,7 +13,6 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      places: {},
       loading: false,
       placeList: getInitialPlaceList(shelterList)
     };
@@ -34,53 +32,15 @@ class App extends Component {
     try {
       localStorage.setItem('share', true);
       this.setState({ loading: true });
-      const currentPosition = await getCurrentPosition();
-      this.setState(() => ({ currentPosition }));
-      const googleMaps = await loadGoogleMapsApi({
-        key: process.env.GOOGLE_MAPS_KEY
+      const currentPosition = this.state.currentPosition;
+      const placeList = this.state.placeList;
+      const setState = this.setState;
+      getPositionAndDurations({
+        currentPosition,
+        placeList,
+        setState
       });
-      const { latitude, longitude } = this.state.currentPosition;
-      const origins = [new googleMaps.LatLng(latitude, longitude)];
-      const destinations = shelterList.map(place => place + ' Houston');
-      const service = new googleMaps.DistanceMatrixService();
-      await service.getDistanceMatrix(
-        {
-          origins,
-          destinations,
-          travelMode: 'WALKING'
-        },
-        response => {
-          const places = this.state.places || {};
-          destinations.forEach((place, index) => {
-            if (!places[place]) places[place] = {};
-            const walkingTime = response.rows[0].elements[index].duration.text;
-            places[place].walkingTime = {
-              text: walkingTime,
-              milliseconds: parseDuration(walkingTime)
-            };
-          });
-          this.setState(() => ({ places }));
-        }
-      );
-      await service.getDistanceMatrix(
-        {
-          origins,
-          destinations,
-          travelMode: 'TRANSIT'
-        },
-        response => {
-          const places = this.state.places || {};
-          destinations.forEach((place, index) => {
-            if (!places[place]) places[place] = {};
-            const transitTime = response.rows[0].elements[index].duration.text;
-            places[place].transitTime = {
-              text: transitTime,
-              milliseconds: parseDuration(transitTime)
-            };
-          });
-          this.setState(() => ({ places, loading: false }));
-        }
-      );
+      this.setState({ loading: false });
     } catch (e) {
       console.log('ERROR:', e);
     }
@@ -103,8 +63,8 @@ class App extends Component {
         {this.state.loading && (
           <Spinner style={{ marginLeft: '4px' }} color="purple" />
         )}
-        <PlacesList
-          places={this.state.places}
+        <PlaceList
+          placeList={this.state.placeList}
           currentPosition={this.state.currentPosition}
         />
       </>
