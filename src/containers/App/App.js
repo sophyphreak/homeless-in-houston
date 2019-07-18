@@ -30,7 +30,7 @@ class App extends Component {
 
   handleClick = async () => {
     try {
-      localStorage.setItem('share', true);
+      window.localStorage.setItem('share', true);
       this.setState({ loading: true });
       const currentPosition = this.state.currentPosition;
       const placeList = this.state.placeList;
