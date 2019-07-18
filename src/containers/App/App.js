@@ -21,7 +21,6 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      loading: false,
       placeList: getInitialPlaceList(shelterList),
       share: false
     };
@@ -43,7 +42,7 @@ class App extends Component {
       if (typeof window !== 'undefined') {
         window.localStorage.setItem('share', true);
       }
-      this.setState({ loading: true, share: true });
+      this.setState({ share: true });
       const currentPosition = this.state.currentPosition;
       const placeList = this.state.placeList;
       const setState = this.setState;
@@ -52,7 +51,6 @@ class App extends Component {
         placeList,
         setState
       });
-      this.setState({ loading: false });
     } catch (e) {
       console.log('ERROR:', e);
     }
