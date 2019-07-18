@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import getInitialPlaceList from './getInitialPlaceList';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
+import FirstLoadCard from '../../components/FirstLoadCard/FirstLoadCard';
 import PlaceList from '../../components/PlaceList/PlaceList';
 import getFirstLoad from './getFirstLoad';
 
@@ -26,6 +27,7 @@ class App extends Component {
       firstLoad: getFirstLoad()
     };
     this.setState = this.setState.bind(this);
+    this.shareLocationClicked = this.shareLocationClicked.bind(this);
   }
 
   componentDidMount() {
@@ -56,24 +58,7 @@ class App extends Component {
     return (
       <>
         {this.state.firstLoad && (
-          <Col xs="12" sm={{ size: 8, offset: 2 }}>
-            <Card>
-              <CardBody>
-                <CardTitle>
-                  <b>Hey there!</b>
-                </CardTitle>
-                <hr />
-                <CardText>
-                  After you share your location, we will show you the services
-                  closest to you.
-                </CardText>
-                <br />
-                <Button color="primary" onClick={this.shareLocationClicked}>
-                  Share location
-                </Button>
-              </CardBody>
-            </Card>
-          </Col>
+          <FirstLoadCard onClick={this.shareLocationClicked} />
         )}
 
         {!this.state.firstLoad &&
