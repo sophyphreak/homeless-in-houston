@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import shelterList from './shelterList';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  Col,
-  Spinner
-} from 'reactstrap';
+import { Spinner } from 'reactstrap';
 import getInitialPlaceList from './getInitialPlaceList';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import FirstLoadCard from '../../components/FirstLoadCard/FirstLoadCard';
