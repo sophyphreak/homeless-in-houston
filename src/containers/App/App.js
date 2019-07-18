@@ -14,13 +14,15 @@ class App extends Component {
         longitude: 0
       },
       loading: false,
-      placeList: getInitialPlaceList(shelterList)
+      placeList: getInitialPlaceList(shelterList),
+      share: false
     };
     this.setState = this.setState.bind(this);
   }
 
   componentDidMount() {
     let result = localStorage.getItem('share');
+    this.setState({ share: result });
     if (result) {
       this.handleClick();
     } else {
@@ -30,7 +32,9 @@ class App extends Component {
 
   handleClick = async () => {
     try {
-      window.localStorage.setItem('share', true);
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('share', true);
+      }
       this.setState({ loading: true });
       const currentPosition = this.state.currentPosition;
       const placeList = this.state.placeList;
@@ -49,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <>
-        {!window.localStorage.getItem('share') && (
+        {!this.state.share && (
           <>
             <p>
               This application shows you homeless shelters that are close to
