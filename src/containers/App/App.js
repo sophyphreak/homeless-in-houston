@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import loadGoogleMapsApi from 'load-google-maps-api';
-import parseDuration from 'parse-duration';
-import getCurrentPosition from './getCurrentPosition';
 import shelterList from './shelterList';
 import PlacesList from '../../components/PlacesList/PlacesList';
 import { Spinner } from 'reactstrap';
+import getInitialPlaceList from './getInitialPlaceList';
+import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
+import PlaceList from '../../components/PlaceList/PlaceList';
 
 class App extends Component {
   constructor(props) {
@@ -15,8 +15,10 @@ class App extends Component {
         longitude: 0
       },
       places: {},
-      loading: false
+      loading: false,
+      placeList: getInitialPlaceList(shelterList)
     };
+    this.setState = this.setState.bind(this);
   }
 
   componentDidMount() {
