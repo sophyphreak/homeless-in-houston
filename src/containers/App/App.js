@@ -55,10 +55,9 @@ class App extends Component {
           <FirstLoadCard onClick={this.shareLocationClicked} />
         )}
 
-        {!this.state.firstLoad &&
-          !this.state.placeList[0].hasOwnProperty('walkingTime') && (
-            <Spinner style={{ marginLeft: '10em' }} color="purple" />
-          )}
+        {!this.state.firstLoad && !walkingTimeHasLoaded(this.state) && (
+          <Spinner style={{ marginLeft: '10em' }} color="purple" />
+        )}
         <PlaceList
           placeList={this.state.placeList}
           currentPosition={this.state.currentPosition}
@@ -67,5 +66,8 @@ class App extends Component {
     );
   }
 }
+
+const walkingTimeHasLoaded = state =>
+  state.placeList[0].hasOwnProperty('walkingTime');
 
 export default App;
