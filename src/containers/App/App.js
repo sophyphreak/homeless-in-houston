@@ -22,44 +22,39 @@ class App extends Component {
         longitude: 0
       },
       placeList: getInitialPlaceList(shelterList),
-      share: false
+      firstLoad: true
     };
     this.setState = this.setState.bind(this);
   }
 
   componentDidMount() {
-    let result = localStorage.getItem('share');
-    this.setState({ share: result });
-    if (result) {
-      this.handleClick();
-    } else {
-      return;
+    const firstLoad = localStorage.getItem('firstLoad');
+    this.setState(() => ({ firstLoad }));
+    if (!firstLoad) {
+      getPositionAndDurations({
+        currentPosition: this.state.currentPosition,
+        placeList: this.state.placeList,
+        setState: this.setState
+      });
     }
   }
 
-  handleClick = async () => {
-    try {
-      if (typeof window !== 'undefined') {
-        window.localStorage.setItem('share', true);
-      }
-      this.setState({ share: true });
-      const currentPosition = this.state.currentPosition;
-      const placeList = this.state.placeList;
-      const setState = this.setState;
-      getPositionAndDurations({
-        currentPosition,
-        placeList,
-        setState
-      });
-    } catch (e) {
-      console.log('ERROR:', e);
+  handleClick() {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('firstLoad', false);
     }
-  };
+    this.setState(() => ({ firstLoad: false }));
+    getPositionAndDurations({
+      currentPosition: this.state.currentPosition,
+      placeList: this.state.placeList,
+      setState: this.setState
+    });
+  }
 
   render() {
     return (
       <>
-        {!this.state.share && (
+        {this.state.firstLoad && (
           <Col xs="12" sm={{ size: 8, offset: 2 }}>
             <Card>
               <CardBody>
