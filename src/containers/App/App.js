@@ -12,6 +12,7 @@ import {
 import getInitialPlaceList from './getInitialPlaceList';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import PlaceList from '../../components/PlaceList/PlaceList';
+import getFirstLoad from './getFirstLoad';
 
 class App extends Component {
   constructor(props) {
@@ -22,14 +23,13 @@ class App extends Component {
         longitude: 0
       },
       placeList: getInitialPlaceList(shelterList),
-      firstLoad: true
+      firstLoad: getFirstLoad()
     };
     this.setState = this.setState.bind(this);
   }
 
   componentDidMount() {
-    const firstLoad = localStorage.getItem('firstLoad');
-    this.setState(() => ({ firstLoad }));
+    const { firstLoad } = this.state;
     if (!firstLoad) {
       getPositionAndDurations({
         currentPosition: this.state.currentPosition,
@@ -39,17 +39,18 @@ class App extends Component {
     }
   }
 
-  handleClick() {
+  handleClick = () => {
+    const firstLoad = false;
+    this.setState(() => ({ firstLoad }));
     if (typeof window !== 'undefined') {
-      window.localStorage.setItem('firstLoad', false);
+      window.localStorage.setItem('firstLoad', firstLoad);
     }
-    this.setState(() => ({ firstLoad: false }));
     getPositionAndDurations({
       currentPosition: this.state.currentPosition,
       placeList: this.state.placeList,
       setState: this.setState
     });
-  }
+  };
 
   render() {
     return (
@@ -75,9 +76,10 @@ class App extends Component {
           </Col>
         )}
 
-        {!this.state.placeList[0].hasOwnProperty('walkingTime') && (
-          <Spinner style={{ marginLeft: '10em' }} color="purple" />
-        )}
+        {!this.state.firstLoad &&
+          !this.state.placeList[0].hasOwnProperty('walkingTime') && (
+            <Spinner style={{ marginLeft: '10em' }} color="purple" />
+          )}
         <PlaceList
           placeList={this.state.placeList}
           currentPosition={this.state.currentPosition}
