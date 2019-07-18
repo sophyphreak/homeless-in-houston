@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import shelterList from './shelterList';
 import { Spinner } from 'reactstrap';
-import getInitialPlaceList from './getInitialPlaceList';
-import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
+
 import FirstLoadCard from '../../components/FirstLoadCard/FirstLoadCard';
 import PlaceList from '../../components/PlaceList/PlaceList';
+
+import getInitialPlaceList from './getInitialPlaceList';
 import getFirstLoad from './getFirstLoad';
+import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
+import shelterList from './shelterList';
 
 class App extends Component {
   constructor(props) {
