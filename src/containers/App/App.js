@@ -49,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <>
-        {!localStorage.getItem('share') && (
+        {!window.localStorage.getItem('share') && (
           <>
             <p>
               This application shows you homeless shelters that are close to
