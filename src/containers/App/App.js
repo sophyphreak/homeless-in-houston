@@ -35,7 +35,7 @@ class App extends Component {
       if (typeof window !== 'undefined') {
         window.localStorage.setItem('share', true);
       }
-      this.setState({ loading: true });
+      this.setState({ loading: true, share: true });
       const currentPosition = this.state.currentPosition;
       const placeList = this.state.placeList;
       const setState = this.setState;
