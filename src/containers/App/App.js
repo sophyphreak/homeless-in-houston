@@ -39,7 +39,7 @@ class App extends Component {
     }
   }
 
-  handleClick = () => {
+  shareLocationClicked = () => {
     const firstLoad = false;
     this.setState(() => ({ firstLoad }));
     if (typeof window !== 'undefined') {
@@ -68,7 +68,7 @@ class App extends Component {
                   closest to you.
                 </CardText>
                 <br />
-                <Button color="primary" onClick={this.handleClick}>
+                <Button color="primary" onClick={this.shareLocationClicked}>
                   Share location
                 </Button>
               </CardBody>
