@@ -1,6 +1,8 @@
 const getFirstLoad = () => {
-  const firstLoad = localStorage.getItem('firstLoad');
-  if (typeof firstLoad === Boolean && firstLoad === false) {
+  const firstLoad = JSON.parse(localStorage.getItem('firstLoad'));
+  console.log(typeof firstLoad);
+  console.log(firstLoad);
+  if (typeof firstLoad === 'boolean' && firstLoad === false) {
     return false;
   }
   return true;
