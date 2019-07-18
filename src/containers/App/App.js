@@ -39,6 +39,7 @@ class App extends Component {
     const isFirstLoad = false;
     this.setState(() => ({ isFirstLoad }));
     if (typeof window !== 'undefined') {
+      // for `gatsby build` to succeed
       window.localStorage.setItem('isFirstLoad', isFirstLoad);
     }
     getPositionAndDurations({
