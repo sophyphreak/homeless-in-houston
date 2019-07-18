@@ -14,7 +14,7 @@ const PlaceList = ({ placeList, currentPosition }) => {
       </div>
     );
   } else {
-    return <p>Please provide your location...</p>;
+    return <></>;
   }
 };
 

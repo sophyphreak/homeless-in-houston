@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import shelterList from './shelterList';
+import { Spinner } from 'reactstrap';
 import getInitialPlaceList from './getInitialPlaceList';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import PlaceList from '../../components/PlaceList/PlaceList';
@@ -12,26 +13,65 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      placeList: getInitialPlaceList(shelterList)
+      loading: false,
+      placeList: getInitialPlaceList(shelterList),
+      share: false
     };
     this.setState = this.setState.bind(this);
   }
-  async componentDidMount() {
-    const currentPosition = this.state.currentPosition;
-    const placeList = this.state.placeList;
-    const setState = this.setState;
-    getPositionAndDurations({
-      currentPosition,
-      placeList,
-      setState
-    });
+
+  componentDidMount() {
+    let result = localStorage.getItem('share');
+    this.setState({ share: result });
+    if (result) {
+      this.handleClick();
+    } else {
+      return;
+    }
   }
+
+  handleClick = async () => {
+    try {
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('share', true);
+      }
+      this.setState({ loading: true, share: true });
+      const currentPosition = this.state.currentPosition;
+      const placeList = this.state.placeList;
+      const setState = this.setState;
+      getPositionAndDurations({
+        currentPosition,
+        placeList,
+        setState
+      });
+      this.setState({ loading: false });
+    } catch (e) {
+      console.log('ERROR:', e);
+    }
+  };
+
   render() {
     return (
-      <PlaceList
-        placeList={this.state.placeList}
-        currentPosition={this.state.currentPosition}
-      />
+      <>
+        {!this.state.share && (
+          <>
+            <p>
+              This application shows you homeless shelters that are close to
+              you. In order to do that, please click on the button below to
+              share your location.
+            </p>
+            <button onClick={this.handleClick}>Share location</button>{' '}
+          </>
+        )}
+
+        {this.state.loading && (
+          <Spinner style={{ marginLeft: '4px' }} color="purple" />
+        )}
+        <PlaceList
+          placeList={this.state.placeList}
+          currentPosition={this.state.currentPosition}
+        />
+      </>
     );
   }
 }
