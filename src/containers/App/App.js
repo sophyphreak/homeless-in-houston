@@ -18,15 +18,15 @@ class App extends Component {
         longitude: 0
       },
       placeList: getInitialPlaceList(shelterList),
-      firstLoad: getFirstLoad()
+      isFirstLoad: getFirstLoad()
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
   }
 
   componentDidMount() {
-    const { firstLoad } = this.state;
-    if (!firstLoad) {
+    const { isFirstLoad } = this.state;
+    if (!isFirstLoad) {
       getPositionAndDurations({
         currentPosition: this.state.currentPosition,
         placeList: this.state.placeList,
@@ -36,10 +36,10 @@ class App extends Component {
   }
 
   shareLocationClicked = () => {
-    const firstLoad = false;
-    this.setState(() => ({ firstLoad }));
+    const isFirstLoad = false;
+    this.setState(() => ({ isFirstLoad }));
     if (typeof window !== 'undefined') {
-      window.localStorage.setItem('firstLoad', firstLoad);
+      window.localStorage.setItem('isFirstLoad', isFirstLoad);
     }
     getPositionAndDurations({
       currentPosition: this.state.currentPosition,
@@ -51,11 +51,11 @@ class App extends Component {
   render() {
     return (
       <>
-        {this.state.firstLoad && (
+        {this.state.isFirstLoad && (
           <FirstLoadCard onClick={this.shareLocationClicked} />
         )}
 
-        {!this.state.firstLoad && !walkingTimeHasLoaded(this.state) && (
+        {!this.state.isFirstLoad && !walkingTimeHasLoaded(this.state) && (
           <Spinner style={{ marginLeft: '10em' }} color="purple" />
         )}
         <PlaceList
