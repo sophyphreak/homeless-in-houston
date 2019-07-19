@@ -8,6 +8,7 @@ import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import shelterList from './shelterList';
 import getInitialPlaceList from './getInitialPlaceList';
+import Gender from '../../components/Filters/Gender/Gender';
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
+    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +51,10 @@ class App extends Component {
     });
   };
 
+  onRadioBtnClick(rSelected) {
+    this.setState({ rSelected });
+  }
+
   render() {
     return (
       <>
@@ -59,6 +65,10 @@ class App extends Component {
         {!this.state.isFirstLoad && !walkingTimeHasLoaded(this.state) && (
           <Spinner style={{ marginLeft: '10em' }} color="purple" />
         )}
+        <Gender
+          rSelected={this.state.rSelected}
+          onRadioBtnClick={rSelected => this.onRadioBtnClick(rSelected)}
+        />
         <PlaceList
           placeList={this.state.placeList}
           currentPosition={this.state.currentPosition}
