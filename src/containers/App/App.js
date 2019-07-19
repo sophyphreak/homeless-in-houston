@@ -51,8 +51,8 @@ class App extends Component {
     });
   };
 
-  onRadioBtnClick(rSelected) {
-    this.setState({ rSelected });
+  onRadioBtnClick({ radioSelected, name }) {
+    this.setState({ [name]: radioSelected });
   }
 
   render() {
@@ -66,8 +66,8 @@ class App extends Component {
           <Spinner style={{ marginLeft: '10em' }} color="purple" />
         )}
         <Gender
-          rSelected={this.state.rSelected}
-          onRadioBtnClick={rSelected => this.onRadioBtnClick(rSelected)}
+          rSelected={this.state.gender}
+          onRadioBtnClick={radioSelected => this.onRadioBtnClick(radioSelected)}
         />
         <PlaceList
           placeList={this.state.placeList}

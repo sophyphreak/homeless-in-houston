@@ -9,21 +9,27 @@ const Gender = props => (
     <ButtonGroup>
       <Button
         color="primary"
-        onClick={() => props.onRadioBtnClick('nonbinary')}
+        onClick={() =>
+          props.onRadioBtnClick({ radioSelected: 'nonbinary', name: 'gender' })
+        }
         active={props.rSelected === 'nonbinary'}
       >
         Nonbinary
       </Button>
       <Button
         color="primary"
-        onClick={() => props.onRadioBtnClick('female')}
+        onClick={() =>
+          props.onRadioBtnClick({ radioSelected: 'female', name: 'gender' })
+        }
         active={props.rSelected === 'female'}
       >
         Female
       </Button>
       <Button
         color="primary"
-        onClick={() => props.onRadioBtnClick('male')}
+        onClick={() =>
+          props.onRadioBtnClick({ radioSelected: 'male', name: 'gender' })
+        }
         active={props.rSelected === 'male'}
       >
         Male
