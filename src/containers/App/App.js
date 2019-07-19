@@ -6,8 +6,7 @@ import PlaceList from '../../components/PlaceList/PlaceList';
 
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
-import shelterList from './shelterList';
-import getInitialPlaceList from './getInitialPlaceList';
+import getInitialPlaceList from './getInitialPlaceList/getInitialPlaceList';
 import Filters from '../../components/Filters/Filters';
 
 class App extends Component {
@@ -18,7 +17,7 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      placeList: getInitialPlaceList(shelterList),
+      placeList: getInitialPlaceList(),
       isFirstLoad: getFirstLoad(),
       filters: {}
     };

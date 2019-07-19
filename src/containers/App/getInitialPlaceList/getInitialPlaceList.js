@@ -1,4 +1,6 @@
-const getInitialPlaceList = rawList =>
+import shelterList from './shelterList';
+
+const getInitialPlaceList = (rawList = shelterList) =>
   rawList.map(raw => {
     const { name } = raw;
     let gender = {};
