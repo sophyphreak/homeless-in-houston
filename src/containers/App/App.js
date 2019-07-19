@@ -8,7 +8,7 @@ import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import shelterList from './shelterList';
 import getInitialPlaceList from './getInitialPlaceList';
-import Gender from '../../components/Filters/Gender/Gender';
+import Filters from '../../components/Filters/Filters';
 
 class App extends Component {
   constructor(props) {
@@ -19,11 +19,12 @@ class App extends Component {
         longitude: 0
       },
       placeList: getInitialPlaceList(shelterList),
-      isFirstLoad: getFirstLoad()
+      isFirstLoad: getFirstLoad(),
+      filters: {}
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
-    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+    this.onFiltersRadioButtonClick = this.onFiltersRadioButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -51,8 +52,8 @@ class App extends Component {
     });
   };
 
-  onRadioBtnClick({ radioSelected, name }) {
-    this.setState({ [name]: radioSelected });
+  onFiltersRadioButtonClick({ name, radioSelected }) {
+    this.setState({ filters: { [name]: radioSelected } });
   }
 
   render() {
@@ -65,9 +66,9 @@ class App extends Component {
         {!this.state.isFirstLoad && !walkingTimeHasLoaded(this.state) && (
           <Spinner style={{ marginLeft: '10em' }} color="purple" />
         )}
-        <Gender
-          rSelected={this.state.gender}
-          onRadioBtnClick={radioSelected => this.onRadioBtnClick(radioSelected)}
+        <Filters
+          filters={this.state.filters}
+          onFiltersRadioButtonClick={this.onFiltersRadioButtonClick}
         />
         <PlaceList
           placeList={this.state.placeList}
