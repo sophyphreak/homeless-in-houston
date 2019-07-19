@@ -72,6 +72,7 @@ class App extends Component {
         <PlaceList
           placeList={this.state.placeList}
           currentPosition={this.state.currentPosition}
+          filters={this.state.filters}
         />
       </>
     );

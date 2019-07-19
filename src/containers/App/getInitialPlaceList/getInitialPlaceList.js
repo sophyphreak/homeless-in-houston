@@ -9,12 +9,12 @@ const getInitialPlaceList = (rawList = shelterList) =>
       gender.female = true;
       gender.nonbinary = true;
     } else {
-      if (raw.gender.includes('male')) {
+      if (raw.gender.includes('men')) {
         gender.male = true;
       } else {
         gender.male = false;
       }
-      if (raw.gender.includes('female')) {
+      if (raw.gender.includes('women')) {
         gender.female = true;
       } else {
         gender.female = false;

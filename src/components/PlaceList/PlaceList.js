@@ -1,16 +1,19 @@
 import React from 'react';
+import camelCase from 'camelcase';
 import Place from './Place/Place';
 
-const PlaceList = ({ placeList, currentPosition }) => {
+const PlaceList = ({ placeList, currentPosition, filters }) => {
   if (googleMapsCallCompleted(placeList)) {
     placeList.sort(
       (a, b) => a.walkingTime.milliseconds - b.walkingTime.milliseconds
     );
     return (
       <div>
-        {placeList.map((place, index) => {
-          return <Place {...place} {...currentPosition} key={index} />;
-        })}
+        {placeList
+          .filter(place => place.gender[camelCase(filters.gender || '')])
+          .map((place, index) => (
+            <Place {...place} {...currentPosition} key={index} />
+          ))}
       </div>
     );
   } else {
