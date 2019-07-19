@@ -10,6 +10,7 @@ const BasicRadioButtons = ({
 }) => (
   <>
     <Label>{label}</Label>
+    <br />
     <ButtonGroup>
       {choices.map((choice, index) => (
         <Button
