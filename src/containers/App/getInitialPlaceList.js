@@ -4,7 +4,7 @@ const getInitialPlaceList = rawList =>
     let gender = {};
     if (raw.gender.includes === 'all') {
       gender.male = true;
-      gender.femail = true;
+      gender.female = true;
       gender.nonbinary = true;
     } else {
       if (raw.gender.includes('male')) {
