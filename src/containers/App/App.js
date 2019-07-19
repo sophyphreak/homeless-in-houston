@@ -4,7 +4,6 @@ import { Spinner } from 'reactstrap';
 import FirstLoadCard from '../../components/FirstLoadCard/FirstLoadCard';
 import PlaceList from '../../components/PlaceList/PlaceList';
 
-import getInitialPlaceList from './getInitialPlaceList';
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import shelterList from './shelterList';
@@ -17,7 +16,7 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      placeList: getInitialPlaceList(shelterList),
+      placeList: shelterList,
       isFirstLoad: getFirstLoad()
     };
     this.setState = this.setState.bind(this);
