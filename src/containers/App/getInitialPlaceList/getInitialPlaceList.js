@@ -4,7 +4,7 @@ const getInitialPlaceList = (rawList = shelterList) =>
   rawList.map(raw => {
     const { name } = raw;
     let gender = {};
-    if (raw.gender.includes === 'all') {
+    if (raw.gender.includes('all')) {
       gender.male = true;
       gender.female = true;
       gender.nonbinary = true;
