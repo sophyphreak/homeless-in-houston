@@ -4,15 +4,12 @@ import Age from './Age/Age';
 import LGBT from './LGBT/LGBT';
 import Pets from './Pets/Pets';
 
-const Filters = ({
-  onFiltersRadioButtonClick,
-  filters: { gender, age, lgbt, pets }
-}) => (
+const Filters = ({ onSelectFilter, filters: { gender, age, lgbt, pets } }) => (
   <>
-    <Gender onButtonClick={onFiltersRadioButtonClick} radioSelected={gender} />
-    <Age onButtonClick={onFiltersRadioButtonClick} radioSelected={age} />
-    <LGBT onButtonClick={onFiltersRadioButtonClick} radioSelected={lgbt} />
-    <Pets onButtonClick={onFiltersRadioButtonClick} radioSelected={pets} />
+    <Gender onSelectFilter={onSelectFilter} selected={gender} />
+    <Age onSelectFilter={onSelectFilter} selected={age} />
+    <LGBT onSelectFilter={onSelectFilter} selected={lgbt} />
+    <Pets onSelectFilter={onSelectFilter} selected={pets} />
   </>
 );
 

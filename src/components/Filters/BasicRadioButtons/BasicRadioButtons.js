@@ -5,8 +5,8 @@ const BasicRadioButtons = ({
   label,
   name,
   choices,
-  radioSelected,
-  onButtonClick
+  selected,
+  onSelectFilter
 }) => (
   <>
     <Label>{label}</Label>
@@ -16,14 +16,14 @@ const BasicRadioButtons = ({
         <Button
           color="primary"
           key={index}
-          onClick={() => onButtonClick({ radioSelected: choice, name })}
-          active={radioSelected === choice}
+          onClick={() => onSelectFilter({ selected: choice, name })}
+          active={selected === choice}
         >
           {choice}
         </Button>
       ))}
     </ButtonGroup>
-    <p>Selected: {radioSelected}</p>
+    <p>Selected: {selected}</p>
   </>
 );
 

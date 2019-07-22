@@ -23,7 +23,7 @@ class App extends Component {
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
-    this.onFiltersRadioButtonClick = this.onFiltersRadioButtonClick.bind(this);
+    this.onFiltersButtonClick = this.onFiltersButtonClick.bind(this);
   }
 
   componentDidMount() {
@@ -51,9 +51,9 @@ class App extends Component {
     });
   };
 
-  onFiltersRadioButtonClick({ name, radioSelected }) {
+  onSelectFilter({ name, selected }) {
     const filters = this.state.filters;
-    filters[name] = radioSelected;
+    filters[name] = selected;
     this.setState(() => ({ filters }));
   }
 
@@ -69,7 +69,7 @@ class App extends Component {
         )}
         <Filters
           filters={this.state.filters}
-          onFiltersRadioButtonClick={this.onFiltersRadioButtonClick}
+          onSelectFilter={this.onSelectFilter}
         />
         <PlaceList
           placeList={this.state.placeList}
