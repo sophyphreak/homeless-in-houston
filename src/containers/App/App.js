@@ -52,7 +52,9 @@ class App extends Component {
   };
 
   onFiltersRadioButtonClick({ name, radioSelected }) {
-    this.setState({ filters: { [name]: radioSelected } });
+    const filters = this.state.filters;
+    filters[name] = radioSelected;
+    this.setState(() => ({ filters }));
   }
 
   render() {
