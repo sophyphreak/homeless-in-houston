@@ -7,6 +7,7 @@ import PlaceList from '../../components/PlaceList/PlaceList';
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import shelterList from './shelterList';
+import getInitialPlaceList from './getInitialPlaceList';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      placeList: shelterList,
+      placeList: getInitialPlaceList(shelterList),
       isFirstLoad: getFirstLoad()
     };
     this.setState = this.setState.bind(this);
