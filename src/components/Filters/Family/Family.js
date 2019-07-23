@@ -3,8 +3,8 @@ import BasicRadioButtons from '../BasicRadioButtons/BasicRadioButtons';
 
 const Family = props => (
   <BasicRadioButtons
-    label="Are you LGBT?"
-    name="lgbt"
+    label="Do you have children with you now?"
+    name="family"
     choices={['Yes', 'No']}
     {...props}
   />
