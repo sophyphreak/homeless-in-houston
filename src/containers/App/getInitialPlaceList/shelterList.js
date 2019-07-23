@@ -1,13 +1,16 @@
 const shelterList = [
   {
     name: "Star of Hope - Men's Development Center",
-    gender: ['men', 'nonbinary']
+    gender: ['male', 'nonbinary']
   },
   {
     name: 'Star of Hope Cornerstone Community',
-    gender: ['women', 'nonbinary']
+    gender: ['female', 'nonbinary']
   },
-  { name: 'Salvation Army - Family Residence', gender: ['women', 'nonbinary'] },
+  {
+    name: 'Salvation Army - Family Residence',
+    gender: ['female', 'nonbinary']
+  },
   { name: 'Covenant House', gender: ['all'] },
   { name: 'Y.A.R.C.', gender: ['all'] },
   { name: 'The Beacon', gender: ['all'] },
