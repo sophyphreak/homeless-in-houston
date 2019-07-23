@@ -1,12 +1,11 @@
-// Use Basic Radio Button
 import React from 'react';
 import BasicRadioButtons from '../BasicRadioButtons/BasicRadioButtons';
 
 const Pets = props => (
   <BasicRadioButtons
-    label="Do you have any pets?"
+    label="Do you have any pets with you?"
     name="pets"
-    choices={['yes', 'no']}
+    choices={['Yes', 'No']}
     {...props}
   />
 );
