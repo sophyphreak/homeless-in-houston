@@ -64,7 +64,7 @@ class App extends Component {
           <FirstLoadCard onClick={this.shareLocationClicked} />
         )}
 
-        {!this.state.isFirstLoad && !walkingTimeHasLoaded(this.state) && (
+        {!this.state.isFirstLoad && !travelTimesHaveLoaded(this.state) && (
           <Spinner style={{ marginLeft: '10em' }} color="purple" />
         )}
         <Filters
@@ -81,7 +81,8 @@ class App extends Component {
   }
 }
 
-const walkingTimeHasLoaded = state =>
-  state.placeList[0].hasOwnProperty('walkingTime');
+const travelTimesHaveLoaded = state =>
+  state.placeList[0].hasOwnProperty('walkingTime') &&
+  state.placeList[0].hasOwnProperty('transitTime');
 
 export default App;
