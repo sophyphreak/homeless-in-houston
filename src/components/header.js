@@ -8,7 +8,8 @@ const Header = ({ siteTitle }) => (
   <header
     style={{
       background: `rebeccapurple`,
-      marginBottom: `1.45rem`
+      marginBottom: `1.45rem`,
+      display: `flex`
     }}
   >
     <div
@@ -18,17 +19,25 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`
       }}
     >
-      <h1 className="header">
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`
-          }}
-        >
-          {siteTitle}
+      <div>
+        <h1 className="header">
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`
+            }}
+          >
+            {siteTitle}
+          </Link>
+        </h1>
+      </div>
+      <div className="contact-us">
+        <p>Contact us</p>
+        <Link to="/contact">
+          <p>Contact us</p>
         </Link>
-      </h1>
+      </div>
     </div>
   </header>
 );
