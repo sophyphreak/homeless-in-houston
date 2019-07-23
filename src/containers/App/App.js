@@ -23,7 +23,7 @@ class App extends Component {
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
-    this.onFiltersButtonClick = this.onFiltersButtonClick.bind(this);
+    this.onSelectFilter = this.onSelectFilter.bind(this);
   }
 
   componentDidMount() {
