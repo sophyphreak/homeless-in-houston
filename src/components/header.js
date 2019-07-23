@@ -8,15 +8,17 @@ const Header = ({ siteTitle }) => (
   <header
     style={{
       background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-      display: `flex`
+      marginBottom: `1.45rem`
     }}
   >
     <div
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`
+        padding: `1.45rem 1.0875rem`,
+        display: `flex`,
+        flexDirection: `row`,
+        justifyContent: `space-between`
       }}
     >
       <div>
@@ -33,9 +35,12 @@ const Header = ({ siteTitle }) => (
         </h1>
       </div>
       <div className="contact-us">
-        <p>Contact us</p>
-        <Link to="/contact">
-          <p>Contact us</p>
+        <Link
+          className="contact-us-text"
+          style={{ textDecoration: 'none' }}
+          to="/contact"
+        >
+          Contact Us
         </Link>
       </div>
     </div>
