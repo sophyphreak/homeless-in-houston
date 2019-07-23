@@ -16,8 +16,12 @@ const getTravelDuration = ({
     },
     response => {
       let typeOfTime;
-      if (travelMode === 'WALKING') typeOfTime = 'walkingTime';
-      if (travelMode === 'TRANSIT') typeOfTime = 'transitTime';
+      if (travelMode === 'WALKING') {
+        typeOfTime = 'walkingTime';
+      }
+      if (travelMode === 'TRANSIT') {
+        typeOfTime = 'transitTime';
+      }
       for (let index = 0; index < destinations.length; index++) {
         const timeString = response.rows[0].elements[index].duration.text;
         placeList[index][typeOfTime] = {
