@@ -17,21 +17,20 @@ const getPositionAndDurations = async ({
     const origins = [new googleMaps.LatLng(latitude, longitude)];
     const destinations = eachNameWithHoustonAtEnd(placeList);
     const service = new googleMaps.DistanceMatrixService();
-    getTravelDuration({
+    const getTravelDurationArgs = {
       placeList,
       service,
       origins,
       destinations,
-      travelMode: 'WALKING',
       setState
+    };
+    getTravelDuration({
+      travelMode: 'WALKING',
+      ...getTravelDurationArgs
     });
     getTravelDuration({
-      placeList,
-      service,
-      origins,
-      destinations,
       travelMode: 'TRANSIT',
-      setState
+      ...getTravelDurationArgs
     });
   } catch (e) {
     console.log('ERROR:', e);

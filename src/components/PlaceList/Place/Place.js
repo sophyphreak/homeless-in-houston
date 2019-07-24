@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody, CardText } from 'reactstrap';
-import DirectionsButton from './DirectionsButton/DirectionsButton';
+import DirectionsLink from './DirectionsLink/DirectionsLink';
 
 const Place = ({
   walkingTime,
@@ -17,7 +17,7 @@ const Place = ({
         <CardText style={{ fontSize: '1.4em' }}>
           <strong>{walkingTime.text}</strong> walking
           <br />
-          <DirectionsButton
+          <DirectionsLink
             travelMode="walking"
             latitude={latitude}
             longitude={longitude}
@@ -26,7 +26,7 @@ const Place = ({
           <br />
           <strong>{transitTime.text}</strong> taking bus/rail
           <br />
-          <DirectionsButton
+          <DirectionsLink
             travelMode="transit"
             latitude={latitude}
             longitude={longitude}

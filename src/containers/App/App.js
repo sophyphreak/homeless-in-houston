@@ -6,8 +6,8 @@ import PlaceList from '../../components/PlaceList/PlaceList';
 
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
-import shelterList from './shelterList';
-import getInitialPlaceList from './getInitialPlaceList';
+import getInitialPlaceList from './getInitialPlaceList/getInitialPlaceList';
+import Filters from '../../components/Filters/Filters';
 
 class App extends Component {
   constructor(props) {
@@ -17,11 +17,13 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      placeList: getInitialPlaceList(shelterList),
-      isFirstLoad: getFirstLoad()
+      placeList: getInitialPlaceList(),
+      isFirstLoad: getFirstLoad(),
+      filters: {}
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
+    this.onChooseFilter = this.onChooseFilter.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +51,12 @@ class App extends Component {
     });
   };
 
+  onChooseFilter({ name, selected }) {
+    const filters = this.state.filters;
+    filters[name] = selected;
+    this.setState(() => ({ filters }));
+  }
+
   render() {
     return (
       <>
@@ -56,19 +64,27 @@ class App extends Component {
           <FirstLoadCard onClick={this.shareLocationClicked} />
         )}
 
-        {!this.state.isFirstLoad && !walkingTimeHasLoaded(this.state) && (
+        {!this.state.isFirstLoad && !travelTimesHaveLoaded(this.state) && (
           <Spinner style={{ marginLeft: '10em' }} color="purple" />
         )}
+        <Filters
+          filters={this.state.filters}
+          onChooseFilter={this.onChooseFilter}
+        />
+        <br />
+        <br />
         <PlaceList
           placeList={this.state.placeList}
           currentPosition={this.state.currentPosition}
+          filters={this.state.filters}
         />
       </>
     );
   }
 }
 
-const walkingTimeHasLoaded = state =>
-  state.placeList[0].hasOwnProperty('walkingTime');
+const travelTimesHaveLoaded = state =>
+  state.placeList[0].hasOwnProperty('walkingTime') &&
+  state.placeList[0].hasOwnProperty('transitTime');
 
 export default App;
