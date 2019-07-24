@@ -3,8 +3,6 @@ Todos
 - finish filters
   - add sample filter data (Rothko Chapel, Menil Collection)
   - add filter functions for each way to filter in PlaceList (for now)
-    - LGBT
-    - Pets
     - Veteran
     - Services
 - see if netlify can deploy develop branch separately
