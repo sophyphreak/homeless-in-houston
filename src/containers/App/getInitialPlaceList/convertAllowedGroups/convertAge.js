@@ -14,13 +14,13 @@ const convertAge = rawAge => {
   if (rawAge.includes('under 18')) {
     age.under18 = true;
   }
-  if (rawAge.includes('female')) {
+  if (rawAge.includes('18-24')) {
     age['18-24'] = true;
   }
-  if (rawAge.includes('male')) {
+  if (rawAge.includes('25-64')) {
     age['25-64'] = true;
   }
-  if (rawAge.includes('male')) {
+  if (rawAge.includes('65 and over')) {
     age['65AndOver'] = true;
   }
   return age;
