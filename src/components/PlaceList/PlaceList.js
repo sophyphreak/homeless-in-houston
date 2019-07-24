@@ -1,24 +1,24 @@
 import React from 'react';
 import Place from './Place/Place';
+import googleMapsCallCompleted from './googleMapsCallCompleted';
+import applyFilters from './applyFilters/applyFilters';
 
-const PlaceList = ({ placeList, currentPosition }) => {
+const PlaceList = ({ placeList, currentPosition, filters }) => {
   if (googleMapsCallCompleted(placeList)) {
-    placeList.sort(
+    const localPlaceList = applyFilters(placeList, filters);
+    localPlaceList.sort(
       (a, b) => a.walkingTime.milliseconds - b.walkingTime.milliseconds
     );
     return (
       <div>
-        {placeList.map((place, index) => {
-          return <Place {...place} {...currentPosition} key={index} />;
-        })}
+        {localPlaceList.map((place, index) => (
+          <Place {...place} {...currentPosition} key={index} />
+        ))}
       </div>
     );
   } else {
     return <></>;
   }
 };
-
-const googleMapsCallCompleted = placeList =>
-  placeList[0].hasOwnProperty('walkingTime');
 
 export default PlaceList;

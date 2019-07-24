@@ -1,3 +1,30 @@
-// use Reactstrap Radio Buttons
-// https://reactstrap.github.io/components/buttons/#Checkbox-and-Radio-Buttons-Stateful-Buttons
-// do NOT use normal radio buttons. do not use the radio buttons found in the form section
+import React from 'react';
+import { Label, ButtonGroup, Button } from 'reactstrap';
+
+const BasicRadioButtons = ({
+  label,
+  name,
+  choices,
+  selected,
+  onChooseFilter
+}) => (
+  <>
+    <Label>{label}</Label>
+    <br />
+    <ButtonGroup>
+      {choices.map((choice, index) => (
+        <Button
+          color="primary"
+          key={index}
+          onClick={() => onChooseFilter({ selected: choice, name })}
+          active={selected === choice}
+        >
+          {choice}
+        </Button>
+      ))}
+    </ButtonGroup>
+    <p>Selected: {selected}</p>
+  </>
+);
+
+export default BasicRadioButtons;
