@@ -32,7 +32,7 @@ const shelterList = [
   {
     name: 'Covenant House',
     gender: ['all'],
-    age: ['all'],
+    age: ['18-24'],
     family: 'allowed',
     lgbt: false,
     pets: false,
