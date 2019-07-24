@@ -4,10 +4,10 @@ const convertServices = rawServices => {
     nightShelter: false
   };
   if (rawServices.includes('day shelter')) {
-    services.nonbinary = true;
+    services.dayShelter = true;
   }
-  if (rawServices.includes('day shelter')) {
-    services.female = true;
+  if (rawServices.includes('night shelter')) {
+    services.nightShelter = true;
   }
   return services;
 };
