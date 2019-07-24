@@ -6,7 +6,8 @@ const shelterList = [
     family: 'no',
     lgbt: false,
     pets: false,
-    veteran: false
+    veteran: false,
+    services: ['night shelter']
   },
   {
     name: 'Star of Hope Cornerstone Community',
@@ -15,7 +16,8 @@ const shelterList = [
     family: 'yes',
     lgbt: false,
     pets: false,
-    veteran: false
+    veteran: false,
+    services: ['night shelter']
   },
   {
     name: 'Salvation Army - Family Residence',
@@ -24,7 +26,8 @@ const shelterList = [
     family: 'yes',
     lgbt: false,
     pets: false,
-    veteran: false
+    veteran: false,
+    services: ['night shelter']
   },
   {
     name: 'Covenant House',
@@ -33,7 +36,8 @@ const shelterList = [
     family: 'allowed',
     lgbt: false,
     pets: false,
-    veteran: false
+    veteran: false,
+    services: ['night shelter']
   },
   {
     name: 'Y.A.R.C.',
@@ -42,7 +46,8 @@ const shelterList = [
     family: 'no',
     lgbt: false,
     pets: false,
-    veteran: false
+    veteran: false,
+    services: ['night shelter']
   },
   {
     name: 'The Beacon',
@@ -51,7 +56,8 @@ const shelterList = [
     family: 'no',
     lgbt: false,
     pets: false,
-    veteran: false
+    veteran: false,
+    services: ['day shelter']
   },
   {
     name: 'VA McGovern Drop In Center',
@@ -60,25 +66,8 @@ const shelterList = [
     family: 'no',
     lgbt: false,
     pets: false,
-    veteran: true
-  },
-  {
-    name: 'Rothko Chapel',
-    gender: ['all'],
-    age: ['all'],
-    family: 'yes',
-    lgbt: false,
-    pets: false,
-    veteran: false
-  },
-  {
-    name: 'Menil Collection',
-    gender: ['all'],
-    age: ['all'],
-    family: 'no',
-    lgbt: false,
-    pets: true,
-    veteran: false
+    veteran: true,
+    services: ['day shelter']
   }
 ];
 
