@@ -3,6 +3,20 @@
   margin: 0;
 }
 
+.contact-us {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-us-text {
+  color: white;
+}
+
+.contact-us-text:hover {
+  color: white;
+}
+
 @media only screen and (max-width: 429px) {
   h1,
   .header {

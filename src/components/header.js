@@ -15,20 +15,34 @@ const Header = ({ siteTitle }) => (
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`
+        padding: `1.45rem 1.0875rem`,
+        display: `flex`,
+        flexDirection: `row`,
+        justifyContent: `space-between`
       }}
     >
-      <h1 className="header">
+      <div>
+        <h1 className="header">
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`
+            }}
+          >
+            {siteTitle}
+          </Link>
+        </h1>
+      </div>
+      <div className="contact-us">
         <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`
-          }}
+          className="contact-us-text"
+          style={{ textDecoration: 'none' }}
+          to="/contact"
         >
-          {siteTitle}
+          Contact Us
         </Link>
-      </h1>
+      </div>
     </div>
   </header>
 );
