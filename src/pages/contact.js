@@ -18,7 +18,13 @@ const ContactPage = () => {
       >
         <FormGroup>
           <Label for="Name">Name:</Label>
-          <Input type="name" name="name" id="name" placeholder="Enter name" />
+          <Input
+            required
+            type="name"
+            name="name"
+            id="name"
+            placeholder="Enter name"
+          />
         </FormGroup>
 
         <FormGroup>
@@ -34,6 +40,7 @@ const ContactPage = () => {
         <FormGroup>
           <Label for="message">Message:</Label>
           <Input
+            required
             type="textarea"
             name="message"
             id="message"
@@ -41,7 +48,7 @@ const ContactPage = () => {
           />
         </FormGroup>
 
-        <Button>Submit</Button>
+        <input type="submit" value="submit" />
       </Form>
     </Layout>
   );
