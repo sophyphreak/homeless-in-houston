@@ -71,6 +71,8 @@ class App extends Component {
           filters={this.state.filters}
           onChooseFilter={this.onChooseFilter}
         />
+        <br />
+        <br />
         <PlaceList
           placeList={this.state.placeList}
           currentPosition={this.state.currentPosition}
