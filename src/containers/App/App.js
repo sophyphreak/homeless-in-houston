@@ -71,14 +71,16 @@ class App extends Component {
         {this.state.isFirstLoad && (
           <FirstLoadCard onClick={this.shareLocationClicked} />
         )}
-
-        {!this.state.isFirstLoad && !travelTimesHaveLoaded(this.state) && (
-          <Spinner style={{ marginLeft: '10em' }} color="purple" />
-        )}
         <Filters
           filters={this.state.filters}
           onChooseFilter={this.onChooseFilter}
         />
+        {!this.state.isFirstLoad && !travelTimesHaveLoaded(this.state) && (
+          <>
+            <br />
+            <Spinner style={{ marginLeft: '10em' }} color="purple" />
+          </>
+        )}
         <br />
         <br />
         <PlaceList
