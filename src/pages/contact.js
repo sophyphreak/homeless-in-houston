@@ -48,7 +48,7 @@ const ContactPage = () => {
           />
         </FormGroup>
 
-        <input type="submit" value="submit" />
+        <input class="btn btn-secondary" type="Submit" value="Submit" />
       </Form>
     </Layout>
   );
