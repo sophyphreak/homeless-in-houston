@@ -19,7 +19,15 @@ class App extends Component {
       },
       placeList: getInitialPlaceList(),
       isFirstLoad: getFirstLoad(),
-      filters: {}
+      filters: {
+        gender: '',
+        age: '',
+        family: '',
+        lgbt: '',
+        pets: '',
+        veteran: '',
+        service: 'Night Shelter'
+      }
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
