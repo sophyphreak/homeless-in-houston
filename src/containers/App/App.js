@@ -23,7 +23,7 @@ class App extends Component {
     };
     this.setState = this.setState.bind(this);
     this.shareLocationClicked = this.shareLocationClicked.bind(this);
-    this.onSelectFilter = this.onSelectFilter.bind(this);
+    this.onChooseFilter = this.onChooseFilter.bind(this);
   }
 
   componentDidMount() {
@@ -51,7 +51,7 @@ class App extends Component {
     });
   };
 
-  onSelectFilter({ name, selected }) {
+  onChooseFilter({ name, selected }) {
     const filters = this.state.filters;
     filters[name] = selected;
     this.setState(() => ({ filters }));
@@ -69,7 +69,7 @@ class App extends Component {
         )}
         <Filters
           filters={this.state.filters}
-          onSelectFilter={this.onSelectFilter}
+          onChooseFilter={this.onChooseFilter}
         />
         <PlaceList
           placeList={this.state.placeList}

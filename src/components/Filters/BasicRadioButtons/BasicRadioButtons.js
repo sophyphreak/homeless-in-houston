@@ -6,7 +6,7 @@ const BasicRadioButtons = ({
   name,
   choices,
   selected,
-  onSelectFilter
+  onChooseFilter
 }) => (
   <>
     <Label>{label}</Label>
@@ -16,7 +16,7 @@ const BasicRadioButtons = ({
         <Button
           color="primary"
           key={index}
-          onClick={() => onSelectFilter({ selected: choice, name })}
+          onClick={() => onChooseFilter({ selected: choice, name })}
           active={selected === choice}
         >
           {choice}

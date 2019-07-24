@@ -7,7 +7,7 @@ import Pets from './Pets/Pets';
 import Veteran from './Veteran/Veteran';
 
 const Filters = ({
-  onSelectFilter,
+  onChooseFilter,
   filters: {
     gender = '',
     family = '',
@@ -18,12 +18,12 @@ const Filters = ({
   }
 }) => (
   <>
-    <Gender onSelectFilter={onSelectFilter} selected={gender} />
-    <Age onSelectFilter={onSelectFilter} selected={age} />
-    <Family onSelectFilter={onSelectFilter} selected={family} />
-    <LGBT onSelectFilter={onSelectFilter} selected={lgbt} />
-    <Pets onSelectFilter={onSelectFilter} selected={pets} />
-    <Veteran onSelectFilter={onSelectFilter} selected={veteran} />
+    <Gender onChooseFilter={onChooseFilter} selected={gender} />
+    <Age onChooseFilter={onChooseFilter} selected={age} />
+    <Family onChooseFilter={onChooseFilter} selected={family} />
+    <LGBT onChooseFilter={onChooseFilter} selected={lgbt} />
+    <Pets onChooseFilter={onChooseFilter} selected={pets} />
+    <Veteran onChooseFilter={onChooseFilter} selected={veteran} />
   </>
 );
 
