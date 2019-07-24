@@ -71,10 +71,12 @@ class App extends Component {
         {this.state.isFirstLoad && (
           <FirstLoadCard onClick={this.shareLocationClicked} />
         )}
-        <Filters
-          filters={this.state.filters}
-          onChooseFilter={this.onChooseFilter}
-        />
+        {!this.state.isFirstLoad && (
+          <Filters
+            filters={this.state.filters}
+            onChooseFilter={this.onChooseFilter}
+          />
+        )}
         {!this.state.isFirstLoad && !travelTimesHaveLoaded(this.state) && (
           <>
             <br />
