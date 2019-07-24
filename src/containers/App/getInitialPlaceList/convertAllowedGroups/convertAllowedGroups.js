@@ -1,5 +1,6 @@
 import convertGender from './convertGender';
 import convertAge from './convertAge';
+import convertServices from './convertServices';
 
 const convertAllowedGroups = ({
   gender: rawGender,

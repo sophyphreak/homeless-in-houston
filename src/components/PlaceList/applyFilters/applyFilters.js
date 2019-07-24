@@ -5,9 +5,10 @@ import filterByFamily from './filterByFamily';
 import filterByLGBT from './filterByLGBT';
 import filterByPets from './filterByPets';
 import filterByVeteran from './filterByVeteran';
+import filterByService from './filterByService';
 
 const applyFilters = (placeList, filters) => {
-  const { gender, family, age, lgbt, pets, veteran } = filters;
+  const { gender, family, age, lgbt, pets, veteran, service } = filters;
   let localPlaceList = copy(placeList);
   localPlaceList = filterByGender(localPlaceList, gender, family);
   localPlaceList = filterByFamily(localPlaceList, family);
@@ -15,6 +16,7 @@ const applyFilters = (placeList, filters) => {
   localPlaceList = filterByLGBT(localPlaceList, lgbt);
   localPlaceList = filterByPets(localPlaceList, pets);
   localPlaceList = filterByVeteran(localPlaceList, veteran);
+  localPlaceList = filterByService(localPlaceList, service);
   return localPlaceList;
 };
 
