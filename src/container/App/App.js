@@ -65,18 +65,19 @@ class App extends Component {
   }
 
   render() {
+    const { isFirstLoad, filters, placeList, currentPosition } = this.state;
     return (
       <AppView
-        isFirstLoad={this.state.isFirstLoad}
-        filters={this.state.filters}
+        isFirstLoad={isFirstLoad}
+        filters={filters}
         displayedPlaceList={getDisplayedPlaceList({
-          placeList: this.state.placeList,
-          filters: this.state.filters
+          placeList,
+          filters
         })}
-        currentPosition={this.state.currentPosition}
+        currentPosition={currentPosition}
         shareLocationClicked={this.shareLocationClicked}
         onChooseFilter={this.onChooseFilter}
-        travelTimesFinishedLoading={didTravelTimesLoad(this.state.placeList)}
+        travelTimesFinishedLoading={didTravelTimesLoad(placeList)}
       />
     );
   }
