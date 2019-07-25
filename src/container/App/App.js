@@ -5,6 +5,7 @@ import AppView from '../../presentational/AppView/AppView';
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import getInitialPlaceList from './getInitialPlaceList/getInitialPlaceList';
+import travelTimesFinishedLoading from './travelTimesFinishedLoading';
 
 class App extends Component {
   constructor(props) {
@@ -67,10 +68,13 @@ class App extends Component {
       <AppView
         isFirstLoad={this.state.isFirstLoad}
         filters={this.state.filters}
-        placeList={this.state.placeList}
+        displayedPlaceList={this.state.placeList}
         currentPosition={this.state.currentPosition}
         shareLocationClicked={this.shareLocationClicked}
         onChooseFilter={this.onChooseFilter}
+        travelTimesFinishedLoading={travelTimesFinishedLoading(
+          this.state.placeList
+        )}
       />
     );
   }

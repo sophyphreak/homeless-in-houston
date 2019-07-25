@@ -3,9 +3,9 @@ import Place from './Place/Place';
 import googleMapsCallCompleted from './googleMapsCallCompleted';
 import applyFilters from './applyFilters/applyFilters';
 
-const PlaceList = ({ placeList, currentPosition, filters }) => {
-  if (googleMapsCallCompleted(placeList)) {
-    const localPlaceList = applyFilters(placeList, filters);
+const PlaceList = ({ displayedPlaceList, currentPosition, filters }) => {
+  if (googleMapsCallCompleted(displayedPlaceList)) {
+    const localPlaceList = applyFilters(displayedPlaceList, filters);
     localPlaceList.sort(
       (a, b) => a.walkingTime.milliseconds - b.walkingTime.milliseconds
     );

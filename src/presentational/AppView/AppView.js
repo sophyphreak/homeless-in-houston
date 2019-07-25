@@ -4,22 +4,22 @@ import { Spinner } from 'reactstrap';
 import FirstLoadCard from '../FirstLoadCard/FirstLoadCard';
 import PlaceList from '../PlaceList/PlaceList';
 import Filters from '../Filters/Filters';
-import travelTimesHaveLoaded from './travelTimesHaveLoaded';
 
 const AppView = ({
   isFirstLoad,
   filters,
-  placeList,
+  displayedPlaceList,
   currentPosition,
   shareLocationClicked,
-  onChooseFilter
+  onChooseFilter,
+  travelTimesFinishedLoading
 }) => (
   <>
     {isFirstLoad && <FirstLoadCard onClick={shareLocationClicked} />}
     {isFirstLoad || (
       <Filters filters={filters} onChooseFilter={onChooseFilter} />
     )}
-    {isFirstLoad || travelTimesHaveLoaded(placeList) || (
+    {isFirstLoad || travelTimesFinishedLoading || (
       <>
         <br />
         <Spinner style={{ marginLeft: '10em' }} color="purple" />
@@ -28,7 +28,7 @@ const AppView = ({
     <br />
     <br />
     <PlaceList
-      placeList={placeList}
+      displayedPlaceList={displayedPlaceList}
       currentPosition={currentPosition}
       filters={filters}
     />
