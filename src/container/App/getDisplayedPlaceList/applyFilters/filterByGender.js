@@ -1,8 +1,8 @@
 import camelCase from 'camelcase';
 
-const filterByGender = (localPlaceList, filterGender, filterFamily) =>
+const filterByGender = (displayedPlaceList, filterGender, filterFamily) =>
   // This makes sure males with children can still see services explicitly for families
-  localPlaceList.filter(
+  displayedPlaceList.filter(
     place =>
       place.gender[camelCase(filterGender || '')] ||
       (place.family === 'yes' && filterFamily === 'Yes')

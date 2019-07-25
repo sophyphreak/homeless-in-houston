@@ -1,5 +1,5 @@
-const filterByVeteran = (localPlaceList, filterVeteran) =>
-  localPlaceList.filter(place => {
+const filterByVeteran = (displayedPlaceList, filterVeteran) =>
+  displayedPlaceList.filter(place => {
     if (filterVeteran !== 'Yes' && place.veteran) {
       return false;
     }

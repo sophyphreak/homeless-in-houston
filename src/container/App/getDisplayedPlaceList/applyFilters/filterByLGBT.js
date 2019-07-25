@@ -1,5 +1,5 @@
-const filterByLGBT = (localPlaceList, filterLGBT) =>
-  localPlaceList.filter(place => {
+const filterByLGBT = (displayedPlaceList, filterLGBT) =>
+  displayedPlaceList.filter(place => {
     if (place.lgbt && filterLGBT === 'No') {
       return false;
     }

@@ -9,15 +9,15 @@ import filterByService from './filterByService';
 
 const applyFilters = (placeList, filters) => {
   const { gender, family, age, lgbt, pets, veteran, service } = filters;
-  let localPlaceList = copy(placeList);
-  localPlaceList = filterByGender(localPlaceList, gender, family);
-  localPlaceList = filterByFamily(localPlaceList, family);
-  localPlaceList = filterByAge(localPlaceList, age);
-  localPlaceList = filterByLGBT(localPlaceList, lgbt);
-  localPlaceList = filterByPets(localPlaceList, pets);
-  localPlaceList = filterByVeteran(localPlaceList, veteran);
-  localPlaceList = filterByService(localPlaceList, service);
-  return localPlaceList;
+  let displayedPlaceList = copy(placeList);
+  displayedPlaceList = filterByGender(displayedPlaceList, gender, family);
+  displayedPlaceList = filterByFamily(displayedPlaceList, family);
+  displayedPlaceList = filterByAge(displayedPlaceList, age);
+  displayedPlaceList = filterByLGBT(displayedPlaceList, lgbt);
+  displayedPlaceList = filterByPets(displayedPlaceList, pets);
+  displayedPlaceList = filterByVeteran(displayedPlaceList, veteran);
+  displayedPlaceList = filterByService(displayedPlaceList, service);
+  return displayedPlaceList;
 };
 
 export default applyFilters;

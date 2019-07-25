@@ -1,5 +1,5 @@
-const filterByFamily = (localPlaceList, filterFamily) =>
-  localPlaceList.filter(place => {
+const filterByFamily = (displayedPlaceList, filterFamily) =>
+  displayedPlaceList.filter(place => {
     if (place.family === 'no' && filterFamily === 'Yes') {
       return false;
     }

@@ -1,5 +1,5 @@
-const filterByPets = (localPlaceList, filterPets) =>
-  localPlaceList.filter(place => {
+const filterByPets = (displayedPlaceList, filterPets) =>
+  displayedPlaceList.filter(place => {
     if (filterPets === 'Yes' && !place.pets) {
       return false;
     }

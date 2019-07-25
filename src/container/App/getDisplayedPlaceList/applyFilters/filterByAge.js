@@ -1,7 +1,7 @@
 import camelCase from 'camelcase';
 
-const filterByAge = (localPlaceList, filterAge) =>
-  localPlaceList.filter(place => {
+const filterByAge = (displayedPlaceList, filterAge) =>
+  displayedPlaceList.filter(place => {
     if (filterAge === '18-24' || filterAge === '25-64') {
       return place.age[filterAge || ''];
     }
