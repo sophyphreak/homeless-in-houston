@@ -7,9 +7,9 @@ import filterByPets from './filterByPets';
 import filterByVeteran from './filterByVeteran';
 import filterByService from './filterByService';
 
-const applyFilters = (placeList, filters) => {
+const applyFilters = (unfilteredPlaceList, filters) => {
   const { gender, family, age, lgbt, pets, veteran, service } = filters;
-  let displayedPlaceList = copy(placeList);
+  let displayedPlaceList = copy(unfilteredPlaceList);
   displayedPlaceList = filterByGender(displayedPlaceList, gender, family);
   displayedPlaceList = filterByFamily(displayedPlaceList, family);
   displayedPlaceList = filterByAge(displayedPlaceList, age);

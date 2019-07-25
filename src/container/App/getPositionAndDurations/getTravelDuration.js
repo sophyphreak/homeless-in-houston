@@ -1,7 +1,7 @@
 import parseDuration from 'parse-duration';
 
 const getTravelDuration = ({
-  placeList,
+  unfilteredPlaceList,
   service,
   origins,
   destinations,
@@ -24,12 +24,12 @@ const getTravelDuration = ({
       }
       for (let index = 0; index < destinations.length; index++) {
         const timeString = getTimeString(response, index);
-        placeList[index][typeOfTime] = {
+        unfilteredPlaceList[index][typeOfTime] = {
           text: timeString,
           milliseconds: parseDuration(timeString)
         };
       }
-      setState(() => ({ placeList }));
+      setState(() => ({ unfilteredPlaceList }));
     }
   );
 };

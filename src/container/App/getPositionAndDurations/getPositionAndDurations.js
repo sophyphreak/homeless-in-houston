@@ -4,7 +4,7 @@ import getTravelDuration from './getTravelDuration';
 
 const getPositionAndDurations = async ({
   currentPosition,
-  placeList,
+  unfilteredPlaceList,
   setState
 }) => {
   try {
@@ -15,10 +15,10 @@ const getPositionAndDurations = async ({
     });
     const { latitude, longitude } = currentPosition;
     const origins = [new googleMaps.LatLng(latitude, longitude)];
-    const destinations = eachNameWithHoustonAtEnd(placeList);
+    const destinations = eachNameWithHoustonAtEnd(unfilteredPlaceList);
     const service = new googleMaps.DistanceMatrixService();
     const getTravelDurationArgs = {
-      placeList,
+      unfilteredPlaceList,
       service,
       origins,
       destinations,
@@ -37,7 +37,7 @@ const getPositionAndDurations = async ({
   }
 };
 
-const eachNameWithHoustonAtEnd = placeList =>
-  placeList.map(({ name }) => name + ' Houston');
+const eachNameWithHoustonAtEnd = unfilteredPlaceList =>
+  unfilteredPlaceList.map(({ name }) => name + ' Houston');
 
 export default getPositionAndDurations;

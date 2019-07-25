@@ -16,7 +16,7 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      placeList: getInitialPlaceList(),
+      unfilteredPlaceList: getInitialPlaceList(),
       isFirstLoad: getFirstLoad(),
       filters: {
         gender: '',
@@ -38,7 +38,7 @@ class App extends Component {
     if (!isFirstLoad) {
       getPositionAndDurations({
         currentPosition: this.state.currentPosition,
-        placeList: this.state.placeList,
+        unfilteredPlaceList: this.state.unfilteredPlaceList,
         setState: this.setState
       });
     }
@@ -53,7 +53,7 @@ class App extends Component {
     }
     getPositionAndDurations({
       currentPosition: this.state.currentPosition,
-      placeList: this.state.placeList,
+      unfilteredPlaceList: this.state.unfilteredPlaceList,
       setState: this.setState
     });
   };
@@ -65,17 +65,22 @@ class App extends Component {
   }
 
   render() {
-    const { isFirstLoad, filters, placeList, currentPosition } = this.state;
+    const {
+      isFirstLoad,
+      filters,
+      unfilteredPlaceList,
+      currentPosition
+    } = this.state;
     const { shareLocationClicked, onChooseFilter } = this;
     return (
       <AppView
         isFirstLoad={isFirstLoad}
         filters={filters}
-        displayedPlaceList={getDisplayedPlaceList(placeList, filters)}
+        displayedPlaceList={getDisplayedPlaceList(unfilteredPlaceList, filters)}
         currentPosition={currentPosition}
         shareLocationClicked={shareLocationClicked}
         onChooseFilter={onChooseFilter}
-        travelTimesFinishedLoading={didTravelTimesLoad(placeList)}
+        travelTimesFinishedLoading={didTravelTimesLoad(unfilteredPlaceList)}
       />
     );
   }
