@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import App from '../containers/App/App';
+import Layout from '../presentational/layout';
+import SEO from '../presentational/seo';
+import App from '../container/App/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const IndexPage = () => (
