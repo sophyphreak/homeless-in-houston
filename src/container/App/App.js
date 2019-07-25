@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Spinner } from 'reactstrap';
 
-import FirstLoadCard from '../../presentational/FirstLoadCard/FirstLoadCard';
-import PlaceList from '../../presentational/PlaceList/PlaceList';
+import AppView from '../../presentational/AppView/AppView';
 
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import getInitialPlaceList from './getInitialPlaceList/getInitialPlaceList';
-import Filters from '../../presentational/Filters/Filters';
 
 class App extends Component {
   constructor(props) {
@@ -67,36 +64,16 @@ class App extends Component {
 
   render() {
     return (
-      <>
-        {this.state.isFirstLoad && (
-          <FirstLoadCard onClick={this.shareLocationClicked} />
-        )}
-        {!this.state.isFirstLoad && (
-          <Filters
-            filters={this.state.filters}
-            onChooseFilter={this.onChooseFilter}
-          />
-        )}
-        {!this.state.isFirstLoad && !travelTimesHaveLoaded(this.state) && (
-          <>
-            <br />
-            <Spinner style={{ marginLeft: '10em' }} color="purple" />
-          </>
-        )}
-        <br />
-        <br />
-        <PlaceList
-          placeList={this.state.placeList}
-          currentPosition={this.state.currentPosition}
-          filters={this.state.filters}
-        />
-      </>
+      <AppView
+        isFirstLoad={this.state.isFirstLoad}
+        filters={this.state.filters}
+        placeList={this.state.placeList}
+        currentPosition={this.state.currentPosition}
+        shareLocationClicked={this.shareLocationClicked}
+        onChooseFilter={this.onChooseFilter}
+      />
     );
   }
 }
-
-const travelTimesHaveLoaded = state =>
-  state.placeList[0].hasOwnProperty('walkingTime') &&
-  state.placeList[0].hasOwnProperty('transitTime');
 
 export default App;
