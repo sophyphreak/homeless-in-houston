@@ -1,5 +1,5 @@
-const travelTimesFinishedLoading = placeList =>
+const didTravelTimesLoad = placeList =>
   placeList[0].hasOwnProperty('walkingTime') &&
   placeList[0].hasOwnProperty('transitTime');
 
-export default travelTimesFinishedLoading;
+export default didTravelTimesLoad;
