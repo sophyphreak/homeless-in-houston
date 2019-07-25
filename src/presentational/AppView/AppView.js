@@ -31,7 +31,6 @@ const AppView = ({
       <PlaceList
         displayedPlaceList={displayedPlaceList}
         currentPosition={currentPosition}
-        filters={filters}
       />
     )}
   </>
