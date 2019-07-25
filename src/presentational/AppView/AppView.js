@@ -27,11 +27,13 @@ const AppView = ({
     )}
     <br />
     <br />
-    <PlaceList
-      displayedPlaceList={displayedPlaceList}
-      currentPosition={currentPosition}
-      filters={filters}
-    />
+    {travelTimesFinishedLoading && (
+      <PlaceList
+        displayedPlaceList={displayedPlaceList}
+        currentPosition={currentPosition}
+        filters={filters}
+      />
+    )}
   </>
 );
 
