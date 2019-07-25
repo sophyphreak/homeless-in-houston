@@ -70,10 +70,7 @@ class App extends Component {
       <AppView
         isFirstLoad={isFirstLoad}
         filters={filters}
-        displayedPlaceList={getDisplayedPlaceList({
-          placeList,
-          filters
-        })}
+        displayedPlaceList={getDisplayedPlaceList(placeList, filters)}
         currentPosition={currentPosition}
         shareLocationClicked={this.shareLocationClicked}
         onChooseFilter={this.onChooseFilter}
