@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Spinner } from 'reactstrap';
 
-import FirstLoadCard from '../../components/FirstLoadCard/FirstLoadCard';
-import PlaceList from '../../components/PlaceList/PlaceList';
+import FirstLoadCard from '../../presentational/FirstLoadCard/FirstLoadCard';
+import PlaceList from '../../presentational/PlaceList/PlaceList';
 
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
 import getInitialPlaceList from './getInitialPlaceList/getInitialPlaceList';
-import Filters from '../../components/Filters/Filters';
+import Filters from '../../presentational/Filters/Filters';
 
 class App extends Component {
   constructor(props) {
