@@ -1,20 +1,12 @@
 import convertGender from './convertGender';
 import convertAge from './convertAge';
-import convertServices from './convertServices';
 
-const convertAllowedGroups = ({
-  gender: rawGender,
-  age: rawAge,
-  services: rawServices,
-  ...rest
-}) => {
+const convertAllowedGroups = ({ gender: rawGender, age: rawAge, ...rest }) => {
   const gender = convertGender(rawGender);
   const age = convertAge(rawAge);
-  const services = convertServices(rawServices);
   const allowedGroups = {
     gender,
     age,
-    services,
     ...rest
   };
   return allowedGroups;

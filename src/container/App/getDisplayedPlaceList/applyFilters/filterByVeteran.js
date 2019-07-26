@@ -1,6 +1,6 @@
-const filterByVeteran = (displayedPlaceList, filterVeteran) =>
+const filterByVeteran = (displayedPlaceList, userIsVeteran) =>
   displayedPlaceList.filter(place => {
-    if (filterVeteran !== 'Yes' && place.veteran) {
+    if (place.veteran === 'specific' && userIsVeteran === 'No') {
       return false;
     }
     return true;

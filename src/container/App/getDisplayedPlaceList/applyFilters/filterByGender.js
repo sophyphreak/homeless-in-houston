@@ -1,10 +1,14 @@
-import camelCase from 'camelcase';
-
-const filterByGender = (displayedPlaceList, filterGender, filterFamily) =>
-  // This makes sure males with children can still see services explicitly for families
+const filterByGender = (displayedPlaceList, userGender, userHasFamily) =>
   displayedPlaceList.filter(
     place =>
-      place.gender[camelCase(filterGender || '')] ||
-      (place.family === 'yes' && filterFamily === 'Yes')
+      isIncludedGender(place, userGender) ||
+      hasFamilyInFamilySpecific(place, userHasFamily)
+      // This makes sure males with children can still see services explicitly for families
   );
+
+const isIncludedGender = (place, userGender) =>
+  place.gender.includes(userGender.toLowerCase());
+const hasFamilyInFamilySpecific = (place, userHasFamily) =>
+  place.family === 'specific' && userHasFamily === 'Yes';
+
 export default filterByGender;

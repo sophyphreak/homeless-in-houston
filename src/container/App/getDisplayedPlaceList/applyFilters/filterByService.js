@@ -1,7 +1,5 @@
-import camelCase from 'camelcase';
-
-const filterByService = (displayedPlaceList, filterService) =>
-  displayedPlaceList.filter(
-    place => place.services[camelCase(filterService || '')]
+const filterByService = (displayedPlaceList, selectedService) =>
+  displayedPlaceList.filter(place =>
+    place.services.includes(selectedService.toLowerCase())
   );
 export default filterByService;

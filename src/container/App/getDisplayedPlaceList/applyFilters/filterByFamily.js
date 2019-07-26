@@ -1,6 +1,6 @@
-const filterByFamily = (displayedPlaceList, filterFamily) =>
+const filterByFamily = (displayedPlaceList, userHasFamily) =>
   displayedPlaceList.filter(place => {
-    if (place.family === 'no' && filterFamily === 'Yes') {
+    if (place.family === 'not okay' && userHasFamily === 'Yes') {
       return false;
     }
     return true;

@@ -1,6 +1,6 @@
-const filterByPets = (displayedPlaceList, filterPets) =>
+const filterByPets = (displayedPlaceList, userHasPets) =>
   displayedPlaceList.filter(place => {
-    if (filterPets === 'Yes' && !place.pets) {
+    if (place.pets === 'not okay' && userHasPets === 'Yes') {
       return false;
     }
     return true;
