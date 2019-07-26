@@ -4,7 +4,7 @@ import AppView from '../../presentational/AppView/AppView';
 
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
-import getInitialPlaceList from './getInitialPlaceList/getInitialPlaceList';
+import getInitialUnfilteredPlaceList from './getInitialUnfilteredPlaceList/getInitialUnfilteredPlaceList';
 import didTravelTimesLoad from './didTravelTimesLoad';
 import getDisplayedPlaceList from './getDisplayedPlaceList/getDisplayedPlaceList';
 
@@ -16,7 +16,7 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      unfilteredPlaceList: getInitialPlaceList(),
+      unfilteredPlaceList: getInitialUnfilteredPlaceList(),
       isFirstLoad: getFirstLoad(),
       filters: {
         gender: '',
