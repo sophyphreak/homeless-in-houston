@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import Layout from '../presentational/layout';
+import SEO from '../presentational/seo';
 
 const ContactPage = () => {
   return (

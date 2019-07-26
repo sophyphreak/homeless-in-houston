@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Spinner } from 'reactstrap';
 
-import FirstLoadCard from '../../components/FirstLoadCard/FirstLoadCard';
-import PlaceList from '../../components/PlaceList/PlaceList';
+import AppView from '../../presentational/AppView/AppView';
 
 import getFirstLoad from './getFirstLoad';
 import getPositionAndDurations from './getPositionAndDurations/getPositionAndDurations';
-import getInitialPlaceList from './getInitialPlaceList/getInitialPlaceList';
-import Filters from '../../components/Filters/Filters';
+import getInitialUnfilteredPlaceList from './getInitialUnfilteredPlaceList/getInitialUnfilteredPlaceList';
+import didTravelTimesLoad from './didTravelTimesLoad';
+import getDisplayedPlaceList from './getDisplayedPlaceList/getDisplayedPlaceList';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class App extends Component {
         latitude: 0,
         longitude: 0
       },
-      placeList: getInitialPlaceList(),
+      unfilteredPlaceList: getInitialUnfilteredPlaceList(),
       isFirstLoad: getFirstLoad(),
       filters: {
         gender: '',
@@ -39,7 +38,7 @@ class App extends Component {
     if (!isFirstLoad) {
       getPositionAndDurations({
         currentPosition: this.state.currentPosition,
-        placeList: this.state.placeList,
+        unfilteredPlaceList: this.state.unfilteredPlaceList,
         setState: this.setState
       });
     }
@@ -54,7 +53,7 @@ class App extends Component {
     }
     getPositionAndDurations({
       currentPosition: this.state.currentPosition,
-      placeList: this.state.placeList,
+      unfilteredPlaceList: this.state.unfilteredPlaceList,
       setState: this.setState
     });
   };
@@ -66,37 +65,25 @@ class App extends Component {
   }
 
   render() {
+    const {
+      isFirstLoad,
+      filters,
+      unfilteredPlaceList,
+      currentPosition
+    } = this.state;
+    const { shareLocationClicked, onChooseFilter } = this;
     return (
-      <>
-        {this.state.isFirstLoad && (
-          <FirstLoadCard onClick={this.shareLocationClicked} />
-        )}
-        {!this.state.isFirstLoad && (
-          <Filters
-            filters={this.state.filters}
-            onChooseFilter={this.onChooseFilter}
-          />
-        )}
-        {!this.state.isFirstLoad && !travelTimesHaveLoaded(this.state) && (
-          <>
-            <br />
-            <Spinner style={{ marginLeft: '10em' }} color="purple" />
-          </>
-        )}
-        <br />
-        <br />
-        <PlaceList
-          placeList={this.state.placeList}
-          currentPosition={this.state.currentPosition}
-          filters={this.state.filters}
-        />
-      </>
+      <AppView
+        isFirstLoad={isFirstLoad}
+        filters={filters}
+        displayedPlaceList={getDisplayedPlaceList(unfilteredPlaceList, filters)}
+        currentPosition={currentPosition}
+        shareLocationClicked={shareLocationClicked}
+        onChooseFilter={onChooseFilter}
+        travelTimesFinishedLoading={didTravelTimesLoad(unfilteredPlaceList)}
+      />
     );
   }
 }
-
-const travelTimesHaveLoaded = state =>
-  state.placeList[0].hasOwnProperty('walkingTime') &&
-  state.placeList[0].hasOwnProperty('transitTime');
 
 export default App;
